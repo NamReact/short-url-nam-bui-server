@@ -9,11 +9,20 @@ const cors = require("cors");
 app.use(cors());
 
 mongoose.connect(
-  process.env.MONGODB_URI || "mongodb://localhost:27017/to-do-list-2",
+  process.env.MONGODB_URI || "mongodb://localhost:27017/short-url",
   {
     useNewUrlParser: true
   }
 );
+
+/* MODELS */
+
+const Url = require("./models/url-model");
+
+/* ROUTES */
+
+const urlRoutes = require("./routes/url-routes");
+app.use(urlRoutes);
 
 app.listen(process.env.PORT || 3001, () => {
   console.log("Server started");
